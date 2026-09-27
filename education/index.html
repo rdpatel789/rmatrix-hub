@@ -258,6 +258,61 @@
         .dev-features li strong {
             color: white;
         }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 5%;
+            background: var(--bg-light);
+            text-align: center;
+        }
+        
+        .contact-card {
+            background: white;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid var(--primary-blue);
+        }
+        
+        .contact-card h3 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-card .brand {
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            text-align: left;
+        }
+        
+        .contact-details p {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+        
+        .contact-details a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
 
         /* Footer */
         footer {
@@ -297,8 +352,9 @@
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#programs">Software Training</a></li>
-                <li><a href="#consulting">Odoo Consulting</a></li>
+                <li><a href="#programs">Training</a></li>
+                <li><a href="#consulting">Consulting</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -389,7 +445,7 @@
                 <h2>Odoo Development & Consulting</h2>
                 <p>Beyond classroom training, we provide expert Odoo development consultation to help businesses and developers customize ERP systems to match exact operational workflows.</p>
                 <p>Whether you need custom module architecture, intricate database tuning, or specialized script writing for smooth software version transitions, our real-world technical expertise ensures your ERP architecture runs flawlessly.</p>
-                <a href="mailto:contact@yourdomain.com" class="btn" style="margin-top: 1rem;">Request a Consultation</a>
+                <a href="#contact" class="btn" style="margin-top: 1rem;">Get in Touch</a>
             </div>
             
             <div class="dev-features">
@@ -412,6 +468,24 @@
                         <span><strong>Odoo 19 Version Upgrades:</strong> Specialized consultation for adapting legacy modules and workflows to the newest Odoo 19 architectures.</span>
                     </li>
                 </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="section-header">
+            <h2>Contact Us</h2>
+            <p>Ready to upgrade your accounting skills or need specialized ERP consultation?</p>
+        </div>
+        <div class="contact-card">
+            <h3>Rahul Kapadiya</h3>
+            <div class="brand">R-Matrix Tech & Tax</div>
+            
+            <div class="contact-details">
+                <p><span>📍</span> <strong>Location:</strong> Rajkot, Gujarat (Online & On-Site Support)</p>
+                <p><span>📧</span> <strong>Email:</strong> <a href="mailto:rrmatrix.tech@gmail.com">rrmatrix.tech@gmail.com</a></p>
+                <p><span>📞</span> <strong>Phone:</strong> <a href="tel:+918160776055">+91 81607 76055</a></p>
+                <p><span>📺</span> <strong>YouTube:</strong> <a href="https://www.youtube.com/@R-MATRIXTECHTAX" target="_blank">@R-MATRIXTECHTAX</a></p>
             </div>
         </div>
     </section>
