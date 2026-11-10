@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="R-Matrix Tech & Tax Hub offers accounting, GST, income tax, DSC, ERP implementation and practical software training." />
   <title>R-Matrix Tech & Tax Hub | Premium Accounting, ERP & Academy</title>
-  
-  <!-- Font Awesome & Google Fonts -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
+
   <style>
     :root {
       --bg-dark: #070d18;
@@ -21,6 +23,8 @@
       --text-dim: #94a3b8;
       --border-glass: rgba(255, 255, 255, 0.08);
       --glass-hover: rgba(255, 255, 255, 0.12);
+      --success: #25d366;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
     }
 
     * {
@@ -28,6 +32,9 @@
       margin: 0;
       padding: 0;
       font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
@@ -38,54 +45,68 @@
       line-height: 1.6;
     }
 
-    /* Ambient Background Glows */
-    .ambient-glow-1 {
+    a, button, input, textarea, select {
+      font: inherit;
+    }
+
+    img, svg {
+      max-width: 100%;
+      display: block;
+    }
+
+    section[id], div[id] {
+      scroll-margin-top: 100px;
+    }
+
+    .ambient-glow-1,
+    .ambient-glow-2 {
       position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+    }
+
+    .ambient-glow-1 {
       top: -10%;
       left: 10%;
       width: 550px;
       height: 550px;
       background: radial-gradient(circle, rgba(0, 242, 254, 0.12) 0%, transparent 70%);
-      filter: blur(80px);
-      z-index: 0;
-      pointer-events: none;
     }
+
     .ambient-glow-2 {
-      position: fixed;
       bottom: 10%;
       right: -5%;
       width: 600px;
       height: 600px;
       background: radial-gradient(circle, rgba(79, 172, 254, 0.1) 0%, transparent 70%);
-      filter: blur(100px);
-      z-index: 0;
-      pointer-events: none;
     }
 
-    /* Navbar */
     header {
       position: sticky;
       top: 0;
+      z-index: 1000;
       background: rgba(7, 13, 24, 0.85);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-glass);
-      z-index: 1000;
     }
 
     .nav-container {
       max-width: 1240px;
       margin: 0 auto;
+      padding: 16px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 24px;
+      gap: 20px;
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 12px;
       text-decoration: none;
+      min-width: 0;
     }
 
     .brand svg {
@@ -93,6 +114,7 @@
       height: 44px;
       filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.4));
       transition: transform 0.3s ease;
+      flex-shrink: 0;
     }
 
     .brand:hover svg {
@@ -100,54 +122,82 @@
     }
 
     .brand-text {
-      font-size: 1.35rem;
+      font-size: clamp(1rem, 2vw, 1.35rem);
       font-weight: 900;
       letter-spacing: 0.8px;
-      color: #ffffff;
+      color: #fff;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .brand-text span {
       background: linear-gradient(90deg, var(--accent-cyan), var(--accent-teal));
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
     }
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 24px;
       list-style: none;
-      align-items: center;
     }
 
     .nav-links a {
-      text-decoration: none;
       color: var(--text-dim);
+      text-decoration: none;
       font-size: 0.92rem;
       font-weight: 600;
-      transition: color 0.3s;
+      transition: color 0.3s ease;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
       color: var(--accent-cyan);
+    }
+
+    .btn-glow-nav,
+    .btn-primary-hero,
+    .btn-secondary-hero,
+    .btn-submit-form {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-weight: 800;
     }
 
     .btn-glow-nav {
       background: linear-gradient(135deg, #00f2fe, #4facfe);
       color: #070d18 !important;
-      font-weight: 800 !important;
       padding: 10px 22px;
-      border-radius: 50px;
       box-shadow: 0 0 18px rgba(0, 242, 254, 0.35);
-      transition: all 0.3s ease !important;
     }
 
-    .btn-glow-nav:hover {
+    .btn-glow-nav:hover,
+    .btn-glow-nav:focus-visible {
       transform: translateY(-2px);
       box-shadow: 0 0 28px rgba(0, 242, 254, 0.6);
     }
 
-    /* Hero Section */
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border-glass);
+      color: #fff;
+      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
     .hero-section {
       position: relative;
       z-index: 1;
@@ -158,6 +208,7 @@
     .badge-pill {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       background: rgba(0, 242, 254, 0.08);
       border: 1px solid rgba(0, 242, 254, 0.3);
@@ -172,7 +223,7 @@
     }
 
     .hero-title {
-      font-size: 3.4rem;
+      font-size: clamp(2.4rem, 5vw, 4rem);
       font-weight: 900;
       line-height: 1.15;
       max-width: 950px;
@@ -183,7 +234,8 @@
     .gradient-text {
       background: linear-gradient(135deg, #ffffff 30%, #00f2fe 75%, #4facfe 100%);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero-desc {
@@ -202,48 +254,33 @@
     }
 
     .btn-primary-hero {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
       background: linear-gradient(135deg, #00f2fe, #4facfe);
       color: #070d18;
-      font-weight: 800;
       padding: 15px 32px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 1rem;
       box-shadow: 0 4px 25px rgba(0, 242, 254, 0.4);
-      transition: all 0.3s ease;
     }
 
-    .btn-primary-hero:hover {
+    .btn-primary-hero:hover,
+    .btn-primary-hero:focus-visible {
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 6px 35px rgba(0, 242, 254, 0.7);
     }
 
     .btn-secondary-hero {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-glass);
-      color: #ffffff;
-      font-weight: 700;
+      color: #fff;
       padding: 15px 30px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 1rem;
       backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
     }
 
-    .btn-secondary-hero:hover {
+    .btn-secondary-hero:hover,
+    .btn-secondary-hero:focus-visible {
       background: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.3);
       transform: translateY(-3px);
     }
 
-    /* Live Interactive Filter Tabs */
     .tab-section {
       max-width: 1240px;
       margin: 40px auto 20px;
@@ -255,13 +292,13 @@
 
     .filter-pills {
       display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
       background: rgba(15, 23, 42, 0.8);
       padding: 6px;
       border-radius: 50px;
       border: 1px solid var(--border-glass);
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
     }
 
     .filter-btn {
@@ -276,13 +313,14 @@
       transition: all 0.3s ease;
     }
 
-    .filter-btn.active, .filter-btn:hover {
+    .filter-btn.active,
+    .filter-btn:hover,
+    .filter-btn:focus-visible {
       background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(79, 172, 254, 0.2));
-      color: #ffffff;
+      color: #fff;
       border: 1px solid rgba(0, 242, 254, 0.5);
     }
 
-    /* Service Glass Cards */
     .services-container {
       max-width: 1240px;
       margin: 30px auto 70px;
@@ -319,13 +357,15 @@
       transition: opacity 0.3s ease;
     }
 
-    .glass-card:hover {
+    .glass-card:hover,
+    .glass-card:focus-within {
       transform: translateY(-8px);
       border-color: rgba(0, 242, 254, 0.3);
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 242, 254, 0.1);
     }
 
-    .glass-card:hover::before {
+    .glass-card:hover::before,
+    .glass-card:focus-within::before {
       opacity: 1;
     }
 
@@ -356,7 +396,7 @@
       font-size: 1.4rem;
       font-weight: 800;
       margin-bottom: 12px;
-      color: #ffffff;
+      color: #fff;
     }
 
     .glass-card p {
@@ -386,7 +426,6 @@
       font-size: 0.8rem;
     }
 
-    /* Interactive Instant Quote Calculator Tool */
     .calculator-section {
       max-width: 1000px;
       margin: 40px auto 80px;
@@ -394,7 +433,7 @@
       background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(7, 13, 24, 0.95));
       border: 1px solid rgba(0, 242, 254, 0.25);
       border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      box-shadow: var(--shadow);
       position: relative;
       z-index: 1;
     }
@@ -405,7 +444,7 @@
     }
 
     .calc-header h2 {
-      font-size: 2.2rem;
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
       font-weight: 800;
     }
 
@@ -432,15 +471,22 @@
       text-transform: uppercase;
     }
 
-    .calc-box select, .calc-box input {
+    .calc-box select,
+    .calc-box input {
       width: 100%;
       background: #0b1526;
       border: 1px solid var(--border-glass);
-      color: #ffffff;
+      color: #fff;
       padding: 10px 14px;
       border-radius: 8px;
       font-size: 0.95rem;
       outline: none;
+    }
+
+    .calc-box select:focus,
+    .calc-box input:focus {
+      border-color: rgba(0, 242, 254, 0.75);
+      box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.12);
     }
 
     .calc-result-panel {
@@ -462,12 +508,19 @@
     }
 
     .calc-price-wrap .price-num {
-      font-size: 2rem;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
       font-weight: 900;
       color: var(--accent-cyan);
     }
 
-    /* Training Academy Showcase */
+    .calc-price-wrap .plan-price {
+      display: block;
+      margin-top: 8px;
+      font-size: 1.05rem;
+      color: #fff;
+      font-weight: 700;
+    }
+
     .software-marquee-section {
       max-width: 1240px;
       margin: 60px auto;
@@ -480,8 +533,8 @@
     .software-pills-row {
       display: flex;
       justify-content: center;
-      gap: 14px;
       flex-wrap: wrap;
+      gap: 14px;
       margin-top: 25px;
     }
 
@@ -494,7 +547,7 @@
       align-items: center;
       gap: 10px;
       font-weight: 700;
-      color: #ffffff;
+      color: #fff;
       font-size: 0.95rem;
       transition: all 0.3s ease;
     }
@@ -505,19 +558,18 @@
       transform: scale(1.05);
     }
 
-    /* Floating WhatsApp Widget */
     .floating-whatsapp {
       position: fixed;
-      bottom: 28px;
       right: 28px;
+      bottom: 28px;
       width: 62px;
       height: 62px;
-      background: #25d366;
+      background: var(--success);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #ffffff;
+      color: #fff;
       font-size: 32px;
       box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
       text-decoration: none;
@@ -525,12 +577,12 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .floating-whatsapp:hover {
+    .floating-whatsapp:hover,
+    .floating-whatsapp:focus-visible {
       transform: scale(1.1) rotate(8deg);
       box-shadow: 0 8px 35px rgba(37, 211, 102, 0.8);
     }
 
-    /* Contact Section */
     .contact-wrapper {
       max-width: 1240px;
       margin: 80px auto;
@@ -547,11 +599,11 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 50px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      box-shadow: var(--shadow);
     }
 
     .contact-left h2 {
-      font-size: 2.3rem;
+      font-size: clamp(1.8rem, 4vw, 2.3rem);
       font-weight: 800;
       margin-bottom: 15px;
     }
@@ -567,8 +619,8 @@
       display: flex;
       align-items: center;
       gap: 16px;
+      color: #fff;
       text-decoration: none;
-      color: #ffffff;
     }
 
     .item-icon {
@@ -582,6 +634,7 @@
       justify-content: center;
       color: var(--accent-cyan);
       font-size: 1.2rem;
+      flex-shrink: 0;
     }
 
     .form-group {
@@ -596,42 +649,42 @@
       margin-bottom: 6px;
     }
 
-    .form-group input, .form-group textarea, .form-group select {
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
       width: 100%;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border-glass);
       border-radius: 10px;
       padding: 12px 16px;
-      color: #ffffff;
+      color: #fff;
       outline: none;
       font-size: 0.95rem;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
       border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.12);
     }
 
     .btn-submit-form {
       width: 100%;
       background: linear-gradient(135deg, #00f2fe, #4facfe);
       color: #070d18;
-      font-weight: 800;
       padding: 14px;
       border-radius: 10px;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
       margin-top: 10px;
     }
 
-    .btn-submit-form:hover {
+    .btn-submit-form:hover,
+    .btn-submit-form:focus-visible {
       transform: translateY(-2px);
       box-shadow: 0 6px 25px rgba(0, 242, 254, 0.5);
     }
 
-    /* Footer */
     footer {
       border-top: 1px solid var(--border-glass);
       padding: 35px 20px;
@@ -643,29 +696,69 @@
     }
 
     @media (max-width: 900px) {
-      .hero-title { font-size: 2.3rem; }
-      .contact-card-main { grid-template-columns: 1fr; gap: 35px; }
-      .nav-links { display: none; }
-      .calc-result-panel { flex-direction: column; text-align: center; }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        padding: 12px 0 6px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .contact-card-main {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .calc-result-panel {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-section {
+        padding-top: 80px;
+      }
+
+      .filter-pills {
+        border-radius: 20px;
+      }
+
+      .filter-btn {
+        padding: 10px 16px;
+      }
+
+      .calculator-section {
+        padding: 24px 18px;
+      }
     }
   </style>
 </head>
 <body>
-
   <div class="ambient-glow-1"></div>
   <div class="ambient-glow-2"></div>
 
-  <!-- Floating WhatsApp Action -->
-  <a href="https://wa.me/918160776055?text=Hello%20Rahul%2C%20I%20want%20to%20inquire%20about%20your%20services" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
+  <a href="https://wa.me/918160776055?text=Hello%20Rahul%2C%20I%20want%20to%20inquire%20about%20your%20services" target="_blank" rel="noopener" class="floating-whatsapp" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
   </a>
 
-  <!-- Header / Navigation -->
   <header>
     <div class="nav-container">
-      <a href="#" class="brand">
-        <!-- Modern Tech SVG Logo -->
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <a href="#" class="brand" aria-label="R-Matrix Tech and Tax home">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
             <linearGradient id="logoG" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" style="stop-color:#00f2fe;stop-opacity:1" />
@@ -682,112 +775,109 @@
         </svg>
         <div class="brand-text">R-MATRIX <span>TECH & TAX</span></div>
       </a>
-      <ul class="nav-links">
+
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav-links" id="mainNav">
         <li><a href="#services">Services</a></li>
         <li><a href="#calculator">Instant Estimator</a></li>
         <li><a href="#academy">Training</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="https://wa.me/918160776055" target="_blank" class="btn-glow-nav"><i class="fa-brands fa-whatsapp"></i> Quick Chat</a></li>
+        <li><a href="https://wa.me/918160776055" target="_blank" rel="noopener" class="btn-glow-nav"><i class="fa-brands fa-whatsapp"></i> Quick Chat</a></li>
       </ul>
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero-section">
     <div class="badge-pill"><i class="fa-solid fa-bolt"></i> Next-Gen Financial & ERP Automation Hub</div>
     <h1 class="hero-title">Elevate Your Business With <span class="gradient-text">High-Tech Tax Compliance & Cloud ERP</span></h1>
-    <p class="hero-desc">End-to-end Bookkeeping, GST, Income Tax, Instant Class 3 DSC, Scratch-to-Advanced Odoo ERP Implementation & Practical Training Academy.</p>
+    <p class="hero-desc">End-to-end bookkeeping, GST, income tax, instant Class 3 DSC, Odoo ERP implementation, and practical training delivered by industry specialists.</p>
     <div class="hero-actions">
       <a href="#calculator" class="btn-primary-hero"><i class="fa-solid fa-calculator"></i> Calculate Service Estimate</a>
       <a href="tel:+918160776055" class="btn-secondary-hero"><i class="fa-solid fa-phone"></i> Call +91 81607 76055</a>
     </div>
   </section>
 
-  <!-- Live Filter Pills -->
   <div class="tab-section">
-    <div class="filter-pills">
-      <button class="filter-btn active" onclick="filterServices('all', this)">All Solutions</button>
-      <button class="filter-btn" onclick="filterServices('tax', this)">Tax & Accounts</button>
-      <button class="filter-btn" onclick="filterServices('dsc', this)">Digital Signature (DSC)</button>
-      <button class="filter-btn" onclick="filterServices('erp', this)">ERP Systems</button>
-      <button class="filter-btn" onclick="filterServices('training', this)">Software Classes</button>
+    <div class="filter-pills" aria-label="Service categories">
+      <button class="filter-btn active" type="button" onclick="filterServices('all', this)">All Solutions</button>
+      <button class="filter-btn" type="button" onclick="filterServices('tax', this)">Tax & Accounts</button>
+      <button class="filter-btn" type="button" onclick="filterServices('dsc', this)">Digital Signature (DSC)</button>
+      <button class="filter-btn" type="button" onclick="filterServices('erp', this)">ERP Systems</button>
+      <button class="filter-btn" type="button" onclick="filterServices('training', this)">Software Classes</button>
     </div>
   </div>
 
-  <!-- Services Grid -->
-  <section id="services" class="services-container">
-    <!-- Card 1: Accounting & Taxes -->
-    <div class="glass-card" data-cat="tax">
+  <section id="services" class="services-container" aria-label="Business services">
+    <article class="glass-card" data-cat="tax">
       <div class="card-badge">Financial Accuracy</div>
       <div class="card-icon-wrap"><i class="fa-solid fa-file-invoice-dollar"></i></div>
       <h3>Tax & Accounting</h3>
-      <p>Seamless statutory compliance and automated bookkeeping for scaling businesses.</p>
+      <p>Seamless compliance and automated bookkeeping for scaling businesses.</p>
       <ul class="feature-list">
-        <li><i class="fa-solid fa-circle-check"></i> Daily Bookkeeping & Balance Sheet Finalization</li>
-        <li><i class="fa-solid fa-circle-check"></i> GST Filings (GSTR-1, 3B, 9/9C Reconciliation)</li>
-        <li><i class="fa-solid fa-circle-check"></i> Income Tax (ITR 1 to 7) & Strategic Tax Savings</li>
-        <li><i class="fa-solid fa-circle-check"></i> TDS/TCS Returns & Form 16 Generation</li>
-        <li><i class="fa-solid fa-circle-check"></i> MSME, ROC & Regulatory Approvals</li>
+        <li><i class="fa-solid fa-circle-check"></i> Daily bookkeeping & balance sheet finalization</li>
+        <li><i class="fa-solid fa-circle-check"></i> GST filings (GSTR-1, 3B, 9/9C reconciliation)</li>
+        <li><i class="fa-solid fa-circle-check"></i> Income tax (ITR 1 to 7) & strategic tax savings</li>
+        <li><i class="fa-solid fa-circle-check"></i> TDS/TCS returns & form 16 generation</li>
+        <li><i class="fa-solid fa-circle-check"></i> MSME, ROC & regulatory approvals</li>
       </ul>
-    </div>
+    </article>
 
-    <!-- Card 2: Digital Signatures -->
-    <div class="glass-card" data-cat="dsc">
+    <article class="glass-card" data-cat="dsc">
       <div class="card-badge">Instant Issuance</div>
       <div class="card-icon-wrap"><i class="fa-solid fa-key"></i></div>
       <h3>Digital Signatures (DSC)</h3>
       <p>Certified Class 3 digital signatures with fast paperless video verification.</p>
       <ul class="feature-list">
-        <li><i class="fa-solid fa-circle-check"></i> Class 3 Combo (Signing & Encryption)</li>
-        <li><i class="fa-solid fa-circle-check"></i> DSC for E-Tendering, GeM, MCA & Income Tax</li>
-        <li><i class="fa-solid fa-circle-check"></i> DGFT / IEC DSC for Exporters & Importers</li>
-        <li><i class="fa-solid fa-circle-check"></i> FIPS Certified Secure Hardware USB Tokens</li>
-        <li><i class="fa-solid fa-circle-check"></i> 10-Minute Fast Turnaround Verification</li>
+        <li><i class="fa-solid fa-circle-check"></i> Class 3 combo (signing & encryption)</li>
+        <li><i class="fa-solid fa-circle-check"></i> DSC for e-tendering, GeM, MCA & income tax</li>
+        <li><i class="fa-solid fa-circle-check"></i> DGFT / IEC DSC for exporters & importers</li>
+        <li><i class="fa-solid fa-circle-check"></i> FIPS certified secure hardware USB tokens</li>
+        <li><i class="fa-solid fa-circle-check"></i> 10-minute fast turnaround verification</li>
       </ul>
-    </div>
+    </article>
 
-    <!-- Card 3: ERP Implementation -->
-    <div class="glass-card" data-cat="erp">
+    <article class="glass-card" data-cat="erp">
       <div class="card-badge">Enterprise Cloud</div>
       <div class="card-icon-wrap"><i class="fa-solid fa-network-wired"></i></div>
       <h3>ERP Implementation</h3>
       <p>Custom workflow engineering and end-to-end software deployment.</p>
       <ul class="feature-list">
-        <li><i class="fa-solid fa-circle-check"></i> <strong>Odoo ERP Specialist:</strong> Setup to Custom Workflows</li>
-        <li><i class="fa-solid fa-circle-check"></i> Zoho Books & Tally Prime Cloud Migration</li>
-        <li><i class="fa-solid fa-circle-check"></i> Miracle & Shree Sava Desktop Deployments</li>
-        <li><i class="fa-solid fa-circle-check"></i> Automated Billing, Inventory & CRM Pipelines</li>
-        <li><i class="fa-solid fa-circle-check"></i> Clean Historical Data Migration</li>
+        <li><i class="fa-solid fa-circle-check"></i> <strong>Odoo ERP specialist:</strong> setup to custom workflows</li>
+        <li><i class="fa-solid fa-circle-check"></i> Zoho Books & Tally Prime cloud migration</li>
+        <li><i class="fa-solid fa-circle-check"></i> Miracle & Shree Sava desktop deployment support</li>
+        <li><i class="fa-solid fa-circle-check"></i> Automated billing, inventory & CRM pipelines</li>
+        <li><i class="fa-solid fa-circle-check"></i> Clean historical data migration</li>
       </ul>
-    </div>
+    </article>
 
-    <!-- Card 4: Software Academy -->
-    <div class="glass-card" data-cat="training">
+    <article class="glass-card" data-cat="training">
       <div class="card-badge">Job-Ready Skills</div>
       <div class="card-icon-wrap"><i class="fa-solid fa-graduation-cap"></i></div>
       <h3>Training Academy</h3>
-      <p>Hands-on practical training taught with live business case studies.</p>
+      <p>Hands-on practical training with live business case studies.</p>
       <ul class="feature-list">
-        <li><i class="fa-solid fa-circle-check"></i> <strong>Odoo ERP:</strong> Core & Advanced Module Mastery</li>
-        <li><i class="fa-solid fa-circle-check"></i> <strong>Tally Prime:</strong> GST, Inventory & Payroll</li>
-        <li><i class="fa-solid fa-circle-check"></i> <strong>Zoho Books:</strong> Cloud Setup & Bank Feeds</li>
-        <li><i class="fa-solid fa-circle-check"></i> <strong>Miracle & Shree Sava:</strong> Practical Classrooms</li>
-        <li><i class="fa-solid fa-circle-check"></i> Weekend & Evening Batches for Pros & Students</li>
+        <li><i class="fa-solid fa-circle-check"></i> <strong>Odoo ERP:</strong> core & advanced modules</li>
+        <li><i class="fa-solid fa-circle-check"></i> <strong>Tally Prime:</strong> GST, inventory & payroll</li>
+        <li><i class="fa-solid fa-circle-check"></i> <strong>Zoho Books:</strong> cloud setup & bank feeds</li>
+        <li><i class="fa-solid fa-circle-check"></i> <strong>Miracle & Shree Sava:</strong> practical classrooms</li>
+        <li><i class="fa-solid fa-circle-check"></i> Weekend & evening batches for professionals</li>
       </ul>
-    </div>
+    </article>
   </section>
 
-  <!-- Interactive Functional Tool: Instant Quote / Inquiry Estimator -->
-  <section id="calculator" class="calculator-section">
+  <section id="calculator" class="calculator-section" aria-label="Service estimator">
     <div class="calc-header">
       <div class="card-badge"><i class="fa-solid fa-sliders"></i> Dynamic Tool</div>
       <h2>Interactive Service Estimator</h2>
-      <p style="color: var(--text-dim);">Select your requirements to get an immediate customized service plan.</p>
+      <p style="color: var(--text-dim); margin-top: 8px;">Select your requirements to get an immediate customized service plan.</p>
     </div>
 
     <div class="calc-grid">
       <div class="calc-box">
-        <label>Select Primary Need</label>
+        <label for="serviceType">Select Primary Need</label>
         <select id="serviceType" onchange="calculateEstimate()">
           <option value="tax">Full Accounting & GST Compliance</option>
           <option value="dsc">Digital Signature (Class 3 DSC)</option>
@@ -797,7 +887,7 @@
       </div>
 
       <div class="calc-box">
-        <label>Business Size / Level</label>
+        <label for="scaleType">Business Size / Level</label>
         <select id="scaleType" onchange="calculateEstimate()">
           <option value="startup">Startup / Individual / Student</option>
           <option value="sme">Growing SME / Trader / Firm</option>
@@ -806,7 +896,7 @@
       </div>
 
       <div class="calc-box">
-        <label>Estimated Monthly Invoices</label>
+        <label for="volumeInput">Estimated Monthly Invoices</label>
         <input type="number" id="volumeInput" value="50" min="10" max="5000" oninput="calculateEstimate()">
       </div>
     </div>
@@ -815,22 +905,22 @@
       <div class="calc-price-wrap">
         <h3>Estimated Package Plan</h3>
         <div class="price-num" id="planOutput">Startup Accounting Plan</div>
-        <p id="planDesc" style="color: var(--text-dim); font-size: 0.85rem;">Includes routine bookkeeping, monthly GST, and tax preparation.</p>
+        <span class="plan-price" id="planPrice">₹4,500 / month</span>
+        <p id="planDesc" style="color: var(--text-dim); font-size: 0.85rem; margin-top: 8px;">Includes routine bookkeeping, monthly GST, and tax preparation.</p>
       </div>
       <div>
-        <a href="#" id="inquirePlanBtn" target="_blank" class="btn-primary-hero">
+        <a href="#" id="inquirePlanBtn" class="btn-primary-hero" target="_blank" rel="noopener">
           <i class="fa-brands fa-whatsapp"></i> Inquire This Plan
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Training Academy Software Showcase -->
-  <section id="academy" class="software-marquee-section">
+  <section id="academy" class="software-marquee-section" aria-label="Training academy programs">
     <div class="card-badge">Practical Courses</div>
-    <h2 style="font-size: 2.2rem; font-weight: 800;">Master Top Industry Software</h2>
+    <h2 style="font-size: clamp(1.8rem, 4vw, 2.2rem); font-weight: 800;">Master Top Industry Software</h2>
     <p style="color: var(--text-dim); margin-top: 8px;">Learn directly on live systems and acquire practical skills in demand.</p>
-    
+
     <div class="software-pills-row">
       <div class="soft-pill"><i class="fa-solid fa-cube" style="color: #714B67;"></i> Odoo ERP (Basics to Pro)</div>
       <div class="soft-pill"><i class="fa-solid fa-calculator" style="color: #2b7a78;"></i> Tally Prime (GST & Payroll)</div>
@@ -840,14 +930,13 @@
     </div>
   </section>
 
-  <!-- Contact & Direct WhatsApp Booking Section -->
-  <section id="contact" class="contact-wrapper">
+  <section id="contact" class="contact-wrapper" aria-label="Contact and inquiry form">
     <div class="contact-card-main">
       <div class="contact-left">
         <div class="card-badge">Direct Access</div>
         <h2>Let's Power Your Business & Career</h2>
         <p style="color: var(--text-dim);">Get in touch for free business consultation, fast DSC issuance, or course admissions.</p>
-        
+
         <div class="contact-details-list">
           <a href="tel:+918160776055" class="contact-item-box">
             <div class="item-icon"><i class="fa-solid fa-phone"></i></div>
@@ -879,11 +968,12 @@
         <h3 style="margin-bottom: 20px; font-weight: 700;">Send Direct Inquiry</h3>
         <form onsubmit="handleFormSubmit(event)">
           <div class="form-group">
-            <label>Your Name / Business Name</label>
+            <label for="formName">Your Name / Business Name</label>
             <input type="text" id="formName" placeholder="e.g. Rahul Sharma" required />
           </div>
+
           <div class="form-group">
-            <label>Service Needed</label>
+            <label for="formService">Service Needed</label>
             <select id="formService">
               <option>Tax & Accounting (GST / ITR / TDS)</option>
               <option>Digital Signature (DSC)</option>
@@ -891,99 +981,135 @@
               <option>Software Training Enrollment</option>
             </select>
           </div>
+
           <div class="form-group">
-            <label>Message / Note</label>
+            <label for="formMessage">Message / Note</label>
             <textarea id="formMessage" rows="3" placeholder="Tell us briefly about your requirement..." required></textarea>
           </div>
+
           <button type="submit" class="btn-submit-form"><i class="fa-brands fa-whatsapp"></i> Send via WhatsApp</button>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2026 R-MATRIX TECH & TAX HUB. Designed for Scale, Automation & High Performance.</p>
+    <p>&copy; 2026 R-MATRIX TECH & TAX HUB. Designed for scale, automation & high performance.</p>
   </footer>
 
-  <!-- Interactive JavaScript Logic -->
   <script>
-    // Live Service Filter Function
+    const whatsappBase = 'https://wa.me/918160776055';
+
+    function openWhatsApp(message) {
+      const url = new URL(whatsappBase);
+      url.searchParams.set('text', message);
+      const newTab = window.open(url.toString(), '_blank', 'noopener');
+      if (!newTab) {
+        window.location.href = url.toString();
+      }
+    }
+
     function filterServices(category, btnElement) {
       const buttons = document.querySelectorAll('.filter-btn');
-      buttons.forEach(b => b.classList.remove('active'));
+      buttons.forEach((button) => button.classList.remove('active'));
       btnElement.classList.add('active');
 
       const cards = document.querySelectorAll('.glass-card');
-      cards.forEach(card => {
-        if (category === 'all' || card.getAttribute('data-cat') === category) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
+      cards.forEach((card) => {
+        const show = category === 'all' || card.getAttribute('data-cat') === category;
+        card.style.display = show ? 'flex' : 'none';
       });
     }
 
-    // Dynamic Quote Estimator Logic
     function calculateEstimate() {
       const service = document.getElementById('serviceType').value;
       const scale = document.getElementById('scaleType').value;
-      const volume = parseInt(document.getElementById('volumeInput').value) || 0;
-      
-      let title = "Custom Business Solution";
-      let desc = "Tailored to your specific enterprise operations.";
+      const volume = Math.max(10, parseInt(document.getElementById('volumeInput').value, 10) || 10);
+
+      let title = 'Custom Business Solution';
+      let desc = 'Tailored to your specific enterprise operations.';
+      let rate = 4500;
 
       if (service === 'tax') {
         if (scale === 'startup') {
-          title = "Basic Tax & GST Plan";
-          desc = "Covers monthly GST-1/3B filing, basic bookkeeping, and yearly ITR filing.";
+          title = 'Basic Tax & GST Plan';
+          desc = 'Covers monthly GST-1/3B filing, basic bookkeeping, and yearly ITR filing.';
+          rate = 4500;
         } else if (scale === 'sme') {
-          title = "Complete SME Accounting Suite";
-          desc = "Full ledger management, GST reconciliation, TDS filings, and regular financial reviews.";
+          title = 'Complete SME Accounting Suite';
+          desc = 'Full ledger management, GST reconciliation, TDS filings, and regular financial reviews.';
+          rate = 8200;
         } else {
-          title = "Corporate Audit & Tax Suite";
-          desc = "End-to-end statutory audit readiness, advanced TDS/TCS, ROC, and multi-branch accounting.";
+          title = 'Corporate Audit & Tax Suite';
+          desc = 'End-to-end statutory audit readiness, advanced TDS/TCS, ROC, and multi-branch accounting.';
+          rate = 14500;
         }
       } else if (service === 'dsc') {
-        title = "Class 3 Combo DSC Token";
-        desc = "Signing + Encryption certificate with secure USB token, compatible with all Govt portals.";
+        title = 'Class 3 Combo DSC Token';
+        desc = 'Signing + encryption certificate with secure USB token, compatible with all government portals.';
+        rate = 2600;
       } else if (service === 'erp') {
         if (scale === 'startup') {
-          title = "Odoo Standard Setup";
-          desc = "Core invoicing, customer management, and cloud chart of accounts configuration.";
+          title = 'Odoo Standard Setup';
+          desc = 'Core invoicing, customer management, and cloud chart of accounts configuration.';
+          rate = 12000;
         } else {
-          title = "Advanced ERP Custom Workflow";
-          desc = "Full Odoo/Zoho customization, inventory automation, POS, and custom reports.";
+          title = 'Advanced ERP Custom Workflow';
+          desc = 'Full Odoo/Zoho customization, inventory automation, POS, and custom reports.';
+          rate = 24000;
         }
       } else if (service === 'training') {
-        title = "Professional Job-Ready Course";
-        desc = "100% hands-on practical case studies in Odoo, Tally Prime, Zoho Books, and Miracle.";
+        title = 'Professional Job-Ready Course';
+        desc = '100% hands-on practical case studies in Odoo, Tally Prime, Zoho Books, and Miracle.';
+        rate = 6800;
       }
+
+      const extraVolume = Math.max(0, volume - 50) * 35;
+      const finalPrice = rate + extraVolume;
 
       document.getElementById('planOutput').innerText = title;
       document.getElementById('planDesc').innerText = desc;
+      document.getElementById('planPrice').innerText = `₹${finalPrice.toLocaleString('en-IN')} / month`;
 
-      const waMsg = encodeURIComponent(`Hello Rahul, I calculated a quote on your website for '${title}'. Please share pricing and next steps.`);
-      document.getElementById('inquirePlanBtn').href = `https://wa.me/918160776055?text=${waMsg}`;
+      const msg = `Hello Rahul, I calculated a quote on your website for '${title}'. Estimated monthly value: ₹${finalPrice.toLocaleString('en-IN')}. Please share pricing and next steps.`;
+      document.getElementById('inquirePlanBtn').href = `https://wa.me/918160776055?text=${encodeURIComponent(msg)}`;
     }
 
-    // Handle Contact Form -> Direct WhatsApp Forwarding
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('formName').value;
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('formName').value.trim();
       const service = document.getElementById('formService').value;
-      const msg = document.getElementById('formMessage').value;
+      const msg = document.getElementById('formMessage').value.trim();
 
-      const text = encodeURIComponent(`*New Website Inquiry*
+      if (!name || !msg) {
+        return;
+      }
 
-*Name:* ${name}
-*Requirement:* ${service}
-*Details:* ${msg}`);
-      window.open(`https://wa.me/918160776055?text=${text}`, '_blank');
+      const text = `*New Website Inquiry*\n\n*Name:* ${name}\n*Requirement:* ${service}\n*Details:* ${msg}`;
+      openWhatsApp(text);
     }
 
-    // Initialize default calculator
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.getElementById('mainNav');
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuToggle.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+      });
+
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        });
+      });
+    }
+
     calculateEstimate();
   </script>
 </body>
 </html>
+
